@@ -63,6 +63,13 @@ if (process.env.VERCEL) {
       connector: "bun-sqlite",
     },
   }
+} else if (process.env.NETLIFY) {
+  nitroOption.preset = "netlify"
+  // Use in-memory cache for Netlify (no persistent database)
+  nitroOption.database = undefined
+  nitroOption.rollupConfig = {
+    external: ["db0", "better-sqlite3", "libsql"],
+  }
 }
 
 export default function () {

@@ -13,6 +13,7 @@
   "scripts": {
     "dev": "npm run presource && vite dev",
     "build": "npm run presource && vite build",
+    "build:netlify": "npm run presource && cross-env NETLIFY=1 vite build",
     "lint": "eslint",
     "presource": "tsx ./scripts/favicon.ts && tsx ./scripts/source.ts",
     "start": "node --env-file .env.server dist/output/server/index.mjs",
@@ -30,6 +31,7 @@
     "@atlaskit/pragmatic-drag-and-drop-hitbox": "^1.0.3",
     "@formkit/auto-animate": "^0.8.2",
     "@iconify-json/si": "^1.2.3",
+    "@libsql/client": "^0.17.3",
     "@modelcontextprotocol/sdk": "^1.11.0",
     "@tanstack/react-query-devtools": "^5.66.11",
     "@tanstack/react-router": "^1.112.0",
