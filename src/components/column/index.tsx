@@ -14,6 +14,7 @@ export function Column({ id }: { id: FixedColumnID }) {
 
   return (
     <>
+      <h1 className="sr-only">UpHotspot 上升热点 - 全网实时热点聚合</h1>
       <div className="flex justify-center md:hidden mb-6">
         <NavBar />
       </div>

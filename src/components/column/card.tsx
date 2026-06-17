@@ -119,12 +119,12 @@ function NewsCard({ id, setHandleRef }: NewsCardProps) {
           />
           <span className="flex flex-col">
             <span className="flex items-center gap-2">
-              <span
+              <h2
                 className="text-xl font-bold"
                 title={sources[id].desc}
               >
                 {sources[id].name}
-              </span>
+              </h2>
               {sources[id]?.title && <span className={$("text-sm", `color-${sources[id].color} bg-base op-80 bg-op-50! px-1 rounded`)}>{sources[id].title}</span>}
             </span>
             <span className="text-xs op-70"><UpdatedTime isError={isError} updatedTime={data?.updatedTime} /></span>
@@ -230,29 +230,28 @@ function NewsListHot({ items }: { items: NewsItem[] }) {
   return (
     <ol className="flex flex-col gap-2">
       {items?.map((item, i) => (
-        <a
-          href={width < 768 ? item.mobileUrl || item.url : item.url}
-          target="_blank"
-          key={item.id}
-          title={item.extra?.hover}
-          className={$(
-            "flex gap-2 items-center items-stretch relative cursor-pointer [&_*]:cursor-pointer transition-all",
-            "hover:bg-neutral-400/10 rounded-md pr-1 visited:(text-neutral-400)",
-          )}
-        >
+        <li key={item.id} className="flex gap-2 items-center items-stretch relative [&_*]:cursor-pointer transition-all hover:bg-neutral-400/10 rounded-md pr-1">
           <span className={$("bg-neutral-400/10 min-w-6 flex justify-center items-center rounded-md text-sm")}>
             {i + 1}
           </span>
           {!!item.extra?.diff && <DiffNumber diff={item.extra.diff} />}
-          <span className="self-start line-height-none">
-            <span className="mr-2 text-base">
+          <span className="self-start line-height-none flex gap-2 items-center flex-1 min-w-0">
+            <a
+              href={width < 768 ? item.mobileUrl || item.url : item.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              title={item.extra?.hover}
+              className={$(
+                "flex-1 min-w-0 text-base hover:bg-neutral-400/10 rounded-md pr-1 visited:(text-neutral-400)",
+              )}
+            >
               {item.title}
-            </span>
+            </a>
             <span className="text-xs text-neutral-400/80 truncate align-middle">
               <ExtraInfo item={item} />
             </span>
           </span>
-        </a>
+        </li>
       ))}
     </ol>
   )
